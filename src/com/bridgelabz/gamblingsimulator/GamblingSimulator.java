@@ -4,6 +4,15 @@ public class GamblingSimulator {
 	static final int TOTALSTAKE = 100;
 	static final int BET = 1;	
 	
+	private static int playGame (int currentStake) {
+		int maxLimit = TOTALSTAKE + TOTALSTAKE / 2;
+		int minLimit = TOTALSTAKE - TOTALSTAKE / 2;
+		while(currentStake > minLimit && currentStake < maxLimit) {
+			currentStake = GamblingGame(currentStake);
+		}
+		return currentStake;
+	}
+	
 	private static int GamblingGame(int currentStake) {
 		int i = (int) Math.floor(Math.random()*10)%2;
 		if(i == 0) {
@@ -20,9 +29,9 @@ public class GamblingSimulator {
 		
 		System.out.println("Starting with stake of $100 and betting $1 every game");
 		int currentStake = TOTALSTAKE;
-		currentStake = GamblingGame(currentStake);
+		currentStake = playGame(currentStake);
 		
-		
+		System.out.println(currentStake);
 	}
 
 }
