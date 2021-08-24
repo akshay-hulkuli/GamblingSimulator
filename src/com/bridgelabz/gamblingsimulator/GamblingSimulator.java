@@ -19,7 +19,7 @@ public class GamblingSimulator {
 		System.out.println("Starting with stake of $100 and betting $1 every game");
 		boolean win = GamblingGame();
 		if(win) {
-			System.out.println("Gmabler has won the game");
+			System.out.println("Gambler has won the game");
 		}
 		else {
 			System.out.println("Gambler has lost the game");
