@@ -13,7 +13,19 @@ public class GamblingSimulator {
 	static int amountGained =0;
 	static int daysWon = 0;
 	static int daysLost = 0;
+	static int gainOrLose = 0;
 	
+	private static void gameStopper() {
+		if(gainOrLose == TOTALSTAKE - TOTALSTAKE / 2) {
+			System.out.println("The last game of the month is lost. Hence Stopping gambling");
+			return;
+		}
+		else {
+			System.out.println("The last game of the month is won. Hence continue gambling next month");
+			monthlyReport();
+			System.out.println();
+		}
+	}
 	
 	private static void monthlyReport() {
 			amountPerMonth();
@@ -24,6 +36,7 @@ public class GamblingSimulator {
 			System.out.println("Amount lost : "+ amountLost+" Amount Gained : "+ amountGained);
 			System.out.println();
 			System.out.println("LuckiestDay : "+luckiestDay +" UnluckiestDay : "+ unluckiestDay);
+			System.out.println();
 			finalAmount = 0; amountLost =0; amountGained = 0; daysLost = 0; daysWon = 0; 
 		
 	}
@@ -32,7 +45,7 @@ public class GamblingSimulator {
 		int days = 0;
 		while(days < TOTALDAYS) {
 		stake = TOTALSTAKE;
-		int gainOrLose =  playGame(stake);
+		gainOrLose =  playGame(stake);
 		if(gainOrLose == TOTALSTAKE - TOTALSTAKE / 2 && unluckiestDay == 0) unluckiestDay = days;
 		if(gainOrLose == TOTALSTAKE + TOTALSTAKE / 2 && luckiestDay == 0) luckiestDay = days;
 		finalAmount += gainOrLose;
@@ -68,8 +81,9 @@ public class GamblingSimulator {
 	public static void main(String[] args) {
 		
 		System.out.println("Starting with stake of $100 and betting $1 every game");
-			
+	  
 		monthlyReport();
+		gameStopper();
 		
 	}
 
