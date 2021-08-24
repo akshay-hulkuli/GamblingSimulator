@@ -47,7 +47,6 @@ public class GamblingSimulator {
 		
 		System.out.println("Starting with stake of $100 and betting $1 every game");
 		
-		stake = playGame(stake);
 		finalAmount = TotalAmount();
 		System.out.println("Final Amount" + finalAmount);
 		System.out.println("Amount lost : "+ amountLost+" Amount Gained : "+ amountGained);
