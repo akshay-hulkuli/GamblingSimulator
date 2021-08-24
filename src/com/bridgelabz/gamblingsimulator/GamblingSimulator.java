@@ -1,10 +1,11 @@
 package com.bridgelabz.gamblingsimulator;
 
 public class GamblingSimulator {
+	static final int TOTALSTAKE = 100;
+	static final int BET = 1;	
 
 	public static void main(String[] args) {
-		int totalStake = 100;
-		int betPerGame = 1;	
+		
 		System.out.println("Starting with stake of $100 and betting $1 every game");
 		
 	}
