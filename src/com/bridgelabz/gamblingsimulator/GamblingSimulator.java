@@ -6,7 +6,8 @@ public class GamblingSimulator {
 	static final int TOTALDAYS = 30;
 	static final int TOTALMONTHS = 12;
 	static int stake = TOTALSTAKE;
-	
+	static int luckiestDay = 0;
+	static int unluckiestDay = 0;
 	static int finalAmount  = 0;
 	static int amountLost = 0;
 	static int amountGained =0;
@@ -22,6 +23,7 @@ public class GamblingSimulator {
 			System.out.println("Number of days lost : "+daysLost);
 			System.out.println("Amount lost : "+ amountLost+" Amount Gained : "+ amountGained);
 			System.out.println();
+			System.out.println("LuckiestDay : "+luckiestDay +" UnluckiestDay : "+ unluckiestDay);
 			finalAmount = 0; amountLost =0; amountGained = 0; daysLost = 0; daysWon = 0; 
 		
 	}
@@ -30,7 +32,10 @@ public class GamblingSimulator {
 		int days = 0;
 		while(days < TOTALDAYS) {
 		stake = TOTALSTAKE;
-		finalAmount += playGame(stake);
+		int gainOrLose =  playGame(stake);
+		if(gainOrLose == TOTALSTAKE - TOTALSTAKE / 2 && unluckiestDay == 0) unluckiestDay = days;
+		if(gainOrLose == TOTALSTAKE + TOTALSTAKE / 2 && luckiestDay == 0) luckiestDay = days;
+		finalAmount += gainOrLose;
 		days++;
 		}
 		
