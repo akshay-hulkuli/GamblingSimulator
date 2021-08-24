@@ -3,6 +3,7 @@ package com.bridgelabz.gamblingsimulator;
 public class GamblingSimulator {
 	static final int TOTALSTAKE = 100;
 	static final int BET = 1;	
+	static int stake = 100;
 	
 	private static int playGame (int currentStake) {
 		int maxLimit = TOTALSTAKE + TOTALSTAKE / 2;
@@ -28,10 +29,9 @@ public class GamblingSimulator {
 	public static void main(String[] args) {
 		
 		System.out.println("Starting with stake of $100 and betting $1 every game");
-		int currentStake = TOTALSTAKE;
-		currentStake = playGame(currentStake);
+		stake = playGame(stake);
 		
-		System.out.println(currentStake);
+		System.out.println(stake);
 	}
 
 }
