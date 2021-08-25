@@ -16,14 +16,17 @@ public class GamblingSimulator {
 	static int gainOrLose = 0;
 	
 	private static void gameStopper() {
-		if(gainOrLose == TOTALSTAKE - TOTALSTAKE / 2) {
-			System.out.println("The last game of the month is lost. Hence Stopping gambling");
-			return;
-		}
-		else {
-			System.out.println("The last game of the month is won. Hence continue gambling next month");
-			monthlyReport();
-			System.out.println();
+		while(true) {
+			if(daysWon < daysLost) {
+				System.out.println("Stopping gambling");
+				return;
+			}
+			else {
+				System.out.println("continue gambling next month");
+				daysWon = 0; daysLost =0;
+				monthlyReport();
+				System.out.println();
+			}
 		}
 	}
 	
@@ -37,8 +40,8 @@ public class GamblingSimulator {
 			System.out.println();
 			System.out.println("LuckiestDay : "+luckiestDay +" UnluckiestDay : "+ unluckiestDay);
 			System.out.println();
-			finalAmount = 0; amountLost =0; amountGained = 0; daysLost = 0; daysWon = 0; 
-		
+			finalAmount = 0; amountLost =0; amountGained = 0; 
+		    
 	}
 	
 	private static void amountPerMonth() {
