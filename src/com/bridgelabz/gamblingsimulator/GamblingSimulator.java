@@ -6,8 +6,8 @@ public class GamblingSimulator {
 	static final int TOTALDAYS = 30;
 	static final int TOTALMONTHS = 12;
 	static int stake = TOTALSTAKE;
-	static int luckiestDay = 0;
-	static int unluckiestDay = 0;
+	static int luckiestMonth = 0;
+	static int unluckiestMonth = 0;
 	static int finalAmount  = 0;
 	static int amountLost = 0;
 	static int amountGained =0;
@@ -16,16 +16,29 @@ public class GamblingSimulator {
 	
 	
 	private static void monthlyReport() {
+		int months = 0;
+		int maxGain = 0;
+		int minGain = Integer.MAX_VALUE;
+		while(months < TOTALMONTHS) {
 			amountPerMonth();
-			System.out.println("Monthy Report :");
+			System.out.println("Month "+(months+1)+" Report :");
 			System.out.println("Final Amount : " + finalAmount);
 			System.out.println("Number of days won : "+daysWon);
 			System.out.println("Number of days lost : "+daysLost);
 			System.out.println("Amount lost : "+ amountLost+" Amount Gained : "+ amountGained);
-			System.out.println();
-			System.out.println("LuckiestDay : "+luckiestDay +" UnluckiestDay : "+ unluckiestDay);
+			System.out.println();			
+			if(finalAmount > maxGain) { 
+				maxGain  = finalAmount;
+				luckiestMonth = months;
+			}
+			if(finalAmount < minGain) {
+				minGain = finalAmount;
+				unluckiestMonth = months; 
+			}
 			finalAmount = 0; amountLost =0; amountGained = 0; daysLost = 0; daysWon = 0; 
-		
+			months++;
+		}
+		System.out.println("LuckiestMonth : "+(luckiestMonth+1) +" UnluckiestMonth : "+ (unluckiestMonth+1));
 	}
 	
 	private static void amountPerMonth() {
@@ -33,8 +46,8 @@ public class GamblingSimulator {
 		while(days < TOTALDAYS) {
 		stake = TOTALSTAKE;
 		int gainOrLose =  playGame(stake);
-		if(gainOrLose == TOTALSTAKE - TOTALSTAKE / 2 && unluckiestDay == 0) unluckiestDay = days;
-		if(gainOrLose == TOTALSTAKE + TOTALSTAKE / 2 && luckiestDay == 0) luckiestDay = days;
+//		if(gainOrLose == TOTALSTAKE - TOTALSTAKE / 2 && unluckiestDay == 0) unluckiestDay = days;
+//		if(gainOrLose == TOTALSTAKE + TOTALSTAKE / 2 && luckiestDay == 0) luckiestDay = days;
 		finalAmount += gainOrLose;
 		days++;
 		}
